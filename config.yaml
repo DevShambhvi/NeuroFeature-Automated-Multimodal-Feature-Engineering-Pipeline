@@ -1,0 +1,101 @@
+# NeuroFeature Pipeline Configuration
+
+# ----------------------------
+# Data paths — edit these to match your local setup
+# ----------------------------
+paths:
+  data_root:      "neurofeatures"
+  text_dir:       "neurofeatures/data/text"
+  image_dir:      "neurofeatures/data/images"
+  audio_dir:      "neurofeatures/data/audio"
+  output_dir:     "outputs"
+  index_dir:      "outputs/indexes"
+  tabular_dir:    "outputs/tabular"
+  image_feat_dir: "outputs/image"
+  audio_feat_dir: "outputs/audio"
+
+# ----------------------------
+# Modalities to process
+# ----------------------------
+modalities:
+  text:  true
+  image: true
+  audio: true
+
+# ----------------------------
+# Feature extraction settings
+# ----------------------------
+extraction:
+
+  text:
+    impute_strategy: "mean"           # "mean" | "median" | "most_frequent"
+    clip_std: 3.0
+    label_col: null                   # null = auto-detect
+
+  image:
+    model_name: "mobilenet_v2"
+    image_size: 224
+    normalize: true
+
+  audio:
+    use_pretrained: false
+    pretrained_model: null
+    use_librosa: true
+    sample_rate: 22050
+    n_mfcc: 40
+    include_spectral: true
+    include_temporal: true
+    aggregation: "mean_var"           # "mean_var" | "mean_only"
+
+# ----------------------------
+# Missing modality handling
+# ----------------------------
+missing_modality:
+  policy: "skip"                      # "skip" | "zero_vector" | "fallback_audio"
+
+# ----------------------------
+# Feature assembly & selection
+# ----------------------------
+assembly:
+  normalize: true
+  clip_outliers: true
+  remove_duplicates: true
+
+selection:
+  enabled: false
+  apply_to: "handcrafted_only"
+  n_bootstraps: 50
+  lasso_alpha: 0.01
+  selection_threshold: 0.6
+
+# ----------------------------
+# Fusion settings
+# ----------------------------
+fusion:
+  method: "concatenation"             # "concatenation" | "learned"
+  learned:
+    hidden_dim: 128
+    dropout: 0.2
+    epochs: 10
+    learning_rate: 0.001
+
+# ----------------------------
+# Export settings
+# ----------------------------
+export:
+  format: "csv"                       # "csv" | "parquet"
+  include_schema: true
+  train_val_split: true
+  val_size: 0.2
+  random_seed: 42
+
+# ----------------------------
+# Metadata
+# ----------------------------
+metadata:
+  path: "metadata_example.csv"
+  sample_id_col: "sample_id"
+  label_col: "label"
+  text_path_col: "text_path"
+  image_path_col: "image_path"
+  audio_path_col: "audio_path"
