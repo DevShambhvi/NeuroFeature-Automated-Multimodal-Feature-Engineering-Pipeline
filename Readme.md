@@ -6,7 +6,7 @@ NeuroFeature does **not** train the final ML model. Instead, it focuses on the d
 
 ---
 
-## ✨ Features
+## Features
 
 - **Automated Multimodal Ingestion & Pairing**
   - Load datasets via a configuration file (`config.yaml`) and a master metadata index (`metadata_expanded.csv`).
@@ -34,7 +34,7 @@ NeuroFeature does **not** train the final ML model. Instead, it focuses on the d
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 NeuroFeature/
@@ -72,7 +72,7 @@ NeuroFeature/
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 NeuroFeature follows a five-stage architecture:
 
@@ -90,7 +90,7 @@ Generate indexes       Tabular AE + CNN + wav2vec     Bolasso (Tabular only)    
 
 ---
 
-## 🖥️ Streamlit Web Dashboard
+## Streamlit Web Dashboard
 
 An interactive dashboard is available to tweak hyperparameters, trigger the pipeline, and visualize evaluation results:
 
@@ -101,7 +101,7 @@ This serves a premium UI locally at `http://localhost:8501`.
 
 ---
 
-## 🔬 Benchmark Evaluation Results
+## Benchmark Evaluation Results
 
 Following the modality pairing and autoencoder enhancements, NeuroFeature yields exceptional classification results on the aligned dataset:
 
@@ -114,7 +114,7 @@ Following the modality pairing and autoencoder enhancements, NeuroFeature yields
 
 ---
 
-## 🚀 Usage Guide
+## Usage Guide
 
 ### 1. Auto-Generate Metadata Index
 To pair modalities sequentially for true multimodal training:
@@ -156,7 +156,7 @@ python neurofeatures/evaluate.py
 
 ---
 
-## ⚙️ Configuration Reference
+## Configuration Reference
 
 Key pipeline controls inside `config.yaml`:
 ```yaml
