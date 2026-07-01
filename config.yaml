@@ -1,0 +1,75 @@
+assembly:
+  clip_outliers: true
+  normalize: true
+  remove_duplicates: true
+export:
+  format: csv
+  include_schema: true
+  random_seed: 42
+  train_val_split: true
+  val_size: 0.2
+extraction:
+  audio:
+    aggregation: mean_var
+    include_spectral: true
+    include_temporal: true
+    n_mfcc: 40
+    pretrained_model: null
+    sample_rate: 22050
+    use_librosa: true
+    use_pretrained: false
+  image:
+    image_size: 224
+    model_name: mobilenet_v2
+    normalize: true
+  tabular:
+    clip_std: 3.0
+    impute_strategy: mean
+    label_col: null
+fusion:
+  learned:
+    batch_size: 64
+    dropout: 0.3
+    epochs: 80
+    hidden_dims:
+    - 512
+    - 256
+    - 128
+    learning_rate: 0.001
+    weight_decay: 0.0001
+  method: concatenation
+  normalize_per_modality: true
+  pca:
+    audio_components: 128
+    enabled: true
+    image_components: 128
+metadata:
+  audio_path_col: audio_path
+  image_path_col: image_path
+  label_col: label
+  path: metadata_expanded.csv
+  sample_id_col: sample_id
+  tabular_path_col: tabular_path
+missing_modality:
+  policy: independent
+modalities:
+  audio: true
+  image: true
+  tabular: true
+paths:
+  audio_dir: neurofeatures/data/audio
+  audio_feat_dir: neurofeatures/outputs
+  data_root: neurofeatures
+  image_dir: neurofeatures/data/images
+  image_feat_dir: neurofeatures/outputs
+  index_dir: neurofeatures/outputs/indexes
+  output_dir: neurofeatures/outputs
+  tabular_csv_dir: neurofeatures/outputs/tabular
+  tabular_feat_dir: neurofeatures/outputs
+  tabular_input_dir: neurofeatures/data/tabular
+selection:
+  apply_to: handcrafted_only
+  enabled: true
+  lasso_alpha: 0.01
+  n_bootstraps: 100
+  selection_threshold: 0.5

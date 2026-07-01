@@ -1,0 +1,6 @@
+sample_id,label,tabular_path,image_path,audio_path
+adult,0,neurofeatures/data/tabular/adult.csv,,
+1,1,,,neurofeatures/data/audio/1.wav
+real_0,1,,neurofeatures/data/images/real_0.png,
+siirt 690,0,,neurofeatures/data/images/siirt 690.jpg,
+10,0,,,neurofeatures/data/audio/10.wav
